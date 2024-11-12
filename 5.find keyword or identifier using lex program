@@ -1,0 +1,29 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+"int"|"float"|"return"|"if"|"else"|"for"|"while"    { printf("Keyword: %s\n", yytext); }
+[a-zA-Z_][a-zA-Z0-9_]*                { printf("Identifier: %s\n", yytext); }
+[ \t\n]+                              ; 
+.                                     ; 
+%%
+int yywrap(){}
+int main() {
+    yylex();
+    return 0;
+}
+
+OUTPUT:
+E:\compiler>set path=C:\Program Files (x86)\GnuWin32\bin
+E:\compiler>flex keyandidentifier.l.txt 
+E:\compiler>set path=C:\MinGW\bin
+E:\compiler>gcc lex.yy.c 
+E:\compiler>a 
+if else for a b while
+Keyword: if 
+Keyword: else 
+Keyword: for
+Identifier: a 
+Identifier: b 
+Keyword: while
