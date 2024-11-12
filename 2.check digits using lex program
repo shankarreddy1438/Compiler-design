@@ -1,0 +1,23 @@
+%{
+%}
+%%
+[0-9]* {printf("\n digit\n");}
+.+ {printf("not a digit\n");}
+%%
+int yywrap(){}
+int main()
+{
+printf("\n enter the  number:");
+yylex();
+}
+
+OUTPUT:
+E:\compiler>set path=C: \Program Files (x86) \GnuWin32\bin
+E:\compiler>flex digitcheck.l. txt
+E:\compiler>set path=C: \MinGw\bin
+E:\compiler>gcc lex.yy.c
+E:\compiler>a
+enter the number:42357
+digit
+ABC
+not a digit
