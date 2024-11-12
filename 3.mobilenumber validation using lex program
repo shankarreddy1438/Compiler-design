@@ -1,0 +1,23 @@
+%{
+%}
+
+%%
+[6-9][0-9]{9} {printf("\n mobile number is valid\n");}
+.+ {printf("Invalid number\n");}
+%%
+int yywrap(){}
+int main()
+{
+printf("\n enter the mobile number:");
+yylex();
+}
+
+OUTPUT:
+E:\compiler>set path=C:\Program Files (x86)\GnuWin32\bin 
+E:\compiler>flex mobile.l.txt 
+E:\compiler>set path=C:\MinGW\bin 
+E:\compiler>gcc lexyy.c 
+E:\compiler>a 
+enter the mobile number:6284567891 
+mobile number is  valid 
+1234567 Invalid number
