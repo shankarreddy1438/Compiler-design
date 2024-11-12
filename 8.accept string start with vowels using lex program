@@ -1,0 +1,26 @@
+%{
+%}
+%%
+[AEIOUaeiou][A-Za-z0-9_]* {printf("accept: %s\n",yytext);}
+[a-zA-Z]+ {printf("reject: %s\n",yytext);}
+%%
+int yywrap(){}
+int main()
+{
+printf("\n enter the string:");
+yylex();
+}
+
+
+OUTPUT:
+E:\compiler>set path=C:\Program Files (x86)\GnuWin32\bin 
+E:\compiler>flex vowelstart.l.txt 
+E:\compiler>set path=C:\MinGW\bin 
+E:\compiler>gcc lex.yy.c 
+E:\compiler>a 
+enter the string:
+hi Hello Apple Ice 
+reject: hi 
+reject: Hello 
+accept: Apple 
+accept: Ice
