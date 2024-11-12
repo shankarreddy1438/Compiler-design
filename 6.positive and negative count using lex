@@ -1,0 +1,25 @@
+%{
+int poscount=0,negcount=0;
+%}
+%%
+[-][0-9]+ {negcount++;}
+[0-9]+ {poscount++;}
+%%
+int yywrap(){}
+int main()
+{
+printf("enter the numbers:\n");
+yylex();
+printf("no of positive digits=%d\n",poscount);
+printf("no of negative digits=%d\n",negcount);
+}
+
+OUTPUT:
+E:\compiler>set path=C: \Program Files (x86)\GnuWin32\bin
+E:\compiler>flex positiveandnegative.L.txt 
+E:\compiler>set path=C: \MinGW\bin 
+E:\compiler>gcc lex.yy.c. 
+E:\compiler>a 
+enter the numbers: 2 4 6 -8 3 -7
+no of positive digits=4
+no of negative digits=2
