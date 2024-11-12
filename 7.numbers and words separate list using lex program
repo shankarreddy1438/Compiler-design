@@ -1,0 +1,35 @@
+%{
+#include <stdio.h>
+#include <string.h>
+
+char words[1000] = "";
+char numbers[1000] = "";
+%}
+
+%%
+[0-9]+    { strcat(numbers, yytext); strcat(numbers, " "); }
+[a-zA-Z]+ { strcat(words, yytext); strcat(words, " "); }
+\n        { /* Ignore new lines */ }
+.         { /* Ignore any other character */ }
+%%
+
+int main() {
+    yylex();
+    printf("Words = %s\n", words);
+    printf("Numbers = %s\n", numbers);
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}
+
+OUTPUT:
+E:\compiler>set path=C: \Program Files (x86)\GnuWin32\bin
+E:\compiler>flex numbersandwords.L.txt 
+E:\compiler>set path=C: \MinGW\bin 
+E:\compiler>gcc lex.yy.c. 
+E:\compiler>a 
+hi 1 2 3 hello
+Words= hi hello
+Numbers= 1 2 3
